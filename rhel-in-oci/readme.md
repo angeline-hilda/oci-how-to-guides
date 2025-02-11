@@ -71,8 +71,8 @@ RHEL images require **registration** with **Red Hat Subscription Manager**.
 - **RHEL license fees** are handled directly via **Red Hat**.
 
 ### **Support**
-- [Red Hat Enterprise Linux Life Cycle](https://access.redhat.com/support/policy/updates)
-- [OCI BYOI Support Policies](https://www.oracle.com/cloud/compute/bring-your-own-image.html)
+- [Red Hat Enterprise Linux Life Cycle](https://access.redhat.com/support/policy/updates/errata)
+- [OCI BYOI Support Policies](https://docs.oracle.com/en-us/iaas/Content/Compute/References/bringyourownimage.htm#options__linux)
 
 ---
 
@@ -84,29 +84,48 @@ A **Red Hat subscription** provides:
 - **Technical support** and a **knowledge base**.
 
 ## **Prerequisites**
-Ensure you have an **active Red Hat subscription** to:
+Ensure you have an **active Red Hat subscription** to Download **Red Hat Enterprise Linux**.
 
-- Download **Red Hat Enterprise Linux**.
-- Register and enable your system with **Red Hat**.
+If you try to install any software on the system without registering the system with Red Hat, you'll see the following error messgae:
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/d637639c-23ea-453c-9701-58963590003e" />
+
+  
+
 
 ---
 
 # Register and Enable Red Hat Subscription
 
 ## **1. Registering via Web Console**
-- Log in to **RHEL Web Console**.
+- [Log in](https://www.redhat.com/wapps/ugc/register.html?_flowId=register-flow&_flowExecutionKey=e1s1) to **RHEL Web Console**.
 - Click on the **Avatar (top-right)** → **Subscriptions** → **Overview**.
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/f1e2d963-66ce-4e82-ba93-d281d1d5c048" />
 
 ---
 
 ## **2. Registering via CLI**
-Run the following command:
+- SSH into the RHEL instance. Reset the root password.
+  ```bash
+  sudo passwd root
+  ```
+  <img width="800" alt="image" src="https://github.com/user-attachments/assets/27f3156d-80cb-4bf4-80dd-58df495dc76d" />
+- Run the following command:
 ```bash
 sudo subscription-manager register
 ```
+   This registers the RHEL instance. Authenticate with the root password. Use the Red Hat username and password to register the instance to your account.
+   <img width="800" alt="image" src="https://github.com/user-attachments/assets/a527c8cc-4b28-48c5-b128-0ae7e53ab3a5" />
+
+   The server is registered with the account and it is reflected in your Red Hat Account
+   <img width="800" alt="image" src="https://github.com/user-attachments/assets/481f2cbc-0f25-44ef-a1b5-45ab416fbd7b" />
+
+
 ## 3. Attach Subscription
 - In the **Red Hat Portal**, click on the **Host Name** of the server.
 - Click **Attach Subscription**.
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/0b8eaa49-3ac0-4644-92ca-6e6cdcdcca76" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/3ee25865-c664-4ad6-a8ec-7c228e78c0cf" />
+
 
 ---
 
@@ -115,6 +134,8 @@ Run the following command to check the attached subscription:
 ```bash
 sudo subscription-manager list --consumed
 ```
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/14243231-3b75-45b4-a9b0-9de3dbb421f8" />
+
 ## 5. Update the System
 To update all system packages, run:
 ```bash
@@ -126,25 +147,36 @@ sudo yum update
 
 1. In the OCI Console, go to **Storage** → **Block Volume** → **Create Block Volume**.
 2. Configure the size and performance settings.
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/86a3d6b2-0748-41ae-a3eb-cb0f0611fac0" />
+
+
+
+
 
 ### 2. Attach Block Volume to Instance
 
 1. Navigate to **Compute** → **Instances**.
 2. Select the instance → **Attached Block Volumes** → **Attach Block Volume**.
 3. Choose the volume and click **Attach**.
+   <img width="800" alt="image" src="https://github.com/user-attachments/assets/acb76ec4-e177-49f3-9ac8-1c9c7097e826" />
 
 ### 3. Connect to the Block Volume
 
 If using iSCSI attachment, follow these steps:
 
-#### 1. Install iSCSI Tools
-
-```bash
-sudo yum install iscsi-initiator-utils
-```
-#### 2. Get iSCSI Commands
+#### 1. Get iSCSI Commands
 1. In the OCI Console, select the Block Volume.
 
 2. Click **Actions (⋮) → iSCSI Commands and Information**.
 
 3. Copy and execute the iSCSI commands in the instance.
+<img width="930" alt="image" src="https://github.com/user-attachments/assets/f3fc63e3-8a70-4a4a-8afb-d56cfe4fd011" />
+
+#### 2. Install iSCSI Tools
+
+1. Log in (SSH) to the server. Before the iSCSI commands, install the iSCSI package
+2. Copy the commands and paste them into your instance session window for each of the following steps
+
+```bash
+sudo yum install iscsi-initiator-utils
+```
