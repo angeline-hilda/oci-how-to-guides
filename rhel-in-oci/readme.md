@@ -1,13 +1,13 @@
 # Launch RHEL Instance in OCI
 
 ## 1. Download RHEL Image from Red Hat
-To launch a RHEL instance in OCI, you need a supported image format:
-- **KVM Guest Image**: Downloaded from the [Red Hat Customer Portal](https://access.redhat.com).
-- **QCOW2 Image**: Created using the [Red Hat Image Builder Tool](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/composing_a_customized_rhel_system_image/index).
+To launch a RHEL instance in OCI, you need an image in one of the supported format:
+- **KVM Guest Image**: Downloaded from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.9/x86_64/product-software).
+- **QCOW2 Image**: Created using the [Red Hat Image Builder Tool](https://www.redhat.com/sysadmin/rhel-image-builder).
 
 From the **Red Hat Enterprise Linux Download Page**, download the **KVM Guest Image**.
 
-![Red Hat Customer Portal](image.png)
+<img width="800" alt="redhat_KVM_image" src="https://github.com/user-attachments/assets/791531d8-b3e5-4a32-9335-a01be2a02204" />
 
 ---
 
@@ -16,6 +16,9 @@ Once downloaded:
 1. Log in to the **Oracle Cloud Console**.
 2. Navigate to **Object Storage** → **Create a Bucket** (if not already created).
 3. Upload the RHEL image to this bucket.
+<img width="800" alt="object_storage" src="https://github.com/user-attachments/assets/04ef3ac2-36d1-44ea-b7f7-f4bd697f2715" />
+
+
 
 ---
 
@@ -28,6 +31,12 @@ After uploading, import the image into OCI:
    - **Launch Mode:** `Paravirtualized`
 4. Click **Import Image**.
 
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/f9103a88-04e7-4ee9-b4bb-068cd177319d" />
+
+<img width="800" alt="custome_image" src="https://github.com/user-attachments/assets/a3e209a8-1121-41fd-8fc7-97e522b98bc1" />
+
+
+
 ---
 
 ## 4. Create a Compute Instance
@@ -36,6 +45,11 @@ After uploading, import the image into OCI:
 3. Choose a **compatible shape**.
 4. Configure networking, boot volume, and SSH keys.
 5. Click **Create**.
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/3f9a4896-5b28-4612-bb47-1b219244f36f" />
+
+<img width="809" alt="image" src="https://github.com/user-attachments/assets/7bdc3a82-82d2-43db-81cf-f732a4c303ed" />
+
+
 
 ---
 
@@ -44,6 +58,9 @@ After launch, connect via SSH:
 ```bash
 ssh -i <private-key-path> cloud-user@<instance-public-ip>
 ```
+
+<img width="803" alt="image" src="https://github.com/user-attachments/assets/a19ff4f9-9e7d-4e0d-ba47-6beefb333255" />
+
 # Licensing and Subscription Details
 
 ## BYOS Model (Bring Your Own Subscription)
