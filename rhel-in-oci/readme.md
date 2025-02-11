@@ -103,3 +103,31 @@ To update all system packages, run:
 ```bash
 sudo yum update
 ```
+## Attaching a Block Volume
+
+### 1. Create a Block Volume
+
+1. In the OCI Console, go to **Storage** → **Block Volume** → **Create Block Volume**.
+2. Configure the size and performance settings.
+
+### 2. Attach Block Volume to Instance
+
+1. Navigate to **Compute** → **Instances**.
+2. Select the instance → **Attached Block Volumes** → **Attach Block Volume**.
+3. Choose the volume and click **Attach**.
+
+### 3. Connect to the Block Volume
+
+If using iSCSI attachment, follow these steps:
+
+#### 1. Install iSCSI Tools
+
+```bash
+sudo yum install iscsi-initiator-utils
+```
+#### 2. Get iSCSI Commands
+1. In the OCI Console, select the Block Volume.
+
+2. Click **Actions (⋮) → iSCSI Commands and Information**.
+
+3. Copy and execute the iSCSI commands in the instance.
